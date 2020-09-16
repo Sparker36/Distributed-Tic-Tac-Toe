@@ -8,19 +8,23 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\stpar\\.nuget\\packages\\": {}
+    "C:\\Users\\me\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stpar\\source\\repos\\TicTacToe\\TicTacToeApp.Logic\\TicTacToeApp.Logic.csproj",
+      "projectUniqueName": "A:\\VS repos\\Distributed-Tic-Tac-Toe\\TicTacToeApp.Logic\\TicTacToeApp.Logic.csproj",
       "projectName": "TicTacToeApp.Logic",
-      "projectPath": "C:\\Users\\stpar\\source\\repos\\TicTacToe\\TicTacToeApp.Logic\\TicTacToeApp.Logic.csproj",
-      "packagesPath": "C:\\Users\\stpar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stpar\\source\\repos\\TicTacToe\\TicTacToeApp.Logic\\obj\\",
+      "projectPath": "A:\\VS repos\\Distributed-Tic-Tac-Toe\\TicTacToeApp.Logic\\TicTacToeApp.Logic.csproj",
+      "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+      "outputPath": "A:\\VS repos\\Distributed-Tic-Tac-Toe\\TicTacToeApp.Logic\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\stpar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\me\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -72,7 +76,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

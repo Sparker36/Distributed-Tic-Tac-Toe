@@ -26,49 +26,50 @@ namespace TicTacToeApp.Logic
 
         public override string ToString()
         {
-            string board = $" {_board[0,0]} | {_board[0, 1]} | {_board[0, 2]} {Environment.NewLine}" +
-                           $"---+---+---{Environment.NewLine}" +
-                           $" {_board[1, 0]} | {_board[1, 1]} | {_board[1, 2]} {Environment.NewLine}" +
-                           $"---+---+---{Environment.NewLine}" +
-                           $" {_board[2,0]} | {_board[2,1]} | {_board[2,2]} {Environment.NewLine}";
+            string board = $"    0   1   2 \n" +
+                           $"0   {_board[0,0]} | {_board[0, 1]} | {_board[0, 2]} {Environment.NewLine}" +
+                           $"   ---+---+---{Environment.NewLine}" +
+                           $"1   {_board[1, 0]} | {_board[1, 1]} | {_board[1, 2]} {Environment.NewLine}" +
+                           $"   ---+---+---{Environment.NewLine}" +
+                           $"2   {_board[2,0]} | {_board[2,1]} | {_board[2,2]} {Environment.NewLine}";
             return board;
         }//
 
-        public bool InsertX(int row, int col)
+        public bool CheckPosition(int row, int col)
         {
-            if (row <= _board.GetUpperBound(0) && row>=0 &&
-                col <= _board.GetUpperBound(1) && col>=0 &&
-                this[row,col] == ' ')
-            {
-                _board[row, col] = 'X';
-                return true;
-            }
-            else
-                return false;
-        }//insertx
-
-        public bool InsertO(int row, int col)
-        {
-            if (row <= _board.GetUpperBound(0) && row >= 0 &&
+            return (row <= _board.GetUpperBound(0) && row >= 0 &&
                 col <= _board.GetUpperBound(1) && col >= 0 &&
-                this[row, col] == ' ')
+                this[row, col] == ' ');
+        }
+
+        public bool Insert(int row, int col, char player)
+        {
+            if (CheckPosition(row, col))
             {
-                _board[row, col] = 'O';
+                _board[row, col] = player;
                 return true;
             }
             else
                 return false;
-        }
+        }//insert
 
         public char ReportResult()
         {
             char[] units = { 'X', 'O' };
-            bool XWin = false;
-            bool OWin = false;
+            bool XWin = false,
+                 OWin = false,
+                 ColWin = false,
+                 RowWin = false,
+                 DiagWin = false;
 
-            foreach(var unit in units)
+
+            foreach (var unit in units)
             {
-                if (CheckColumnWin(unit) || CheckRowWin(unit) || CheckDiagonalWin(unit))
+                ColWin = CheckColumnWin(unit);
+                RowWin = CheckRowWin(unit);
+                DiagWin = CheckDiagonalWin(unit);
+
+                if (ColWin || RowWin || DiagWin)
                 {
                     switch (unit)
                     {
@@ -83,15 +84,15 @@ namespace TicTacToeApp.Logic
                 }
             }
 
-            var NoResult = CheckNoResult();
+            var NoResult = CheckNoResult(XWin, OWin);
             if (!OWin && !XWin && NoResult)
                 return 'N';
-            else if (OWin && XWin || !NoResult)
-                return 'D';
             else if (OWin && !XWin)
                 return 'O';
-            else
+            else if (!OWin && XWin)
                 return 'X';
+            else //if (OWin && XWin || !NoResult)
+                return 'D';
         }
 
         private bool CheckColumnWin(char unit)
@@ -131,17 +132,19 @@ namespace TicTacToeApp.Logic
             return false;
         }
 
-        private bool CheckNoResult()
+        private bool CheckNoResult(bool XWin, bool OWin)
         {
+            if (XWin || OWin) return false;
+
             for(int row = 0; row <= _board.GetUpperBound(0); ++row)
             {
                 for(int col = 0; col <= _board.GetUpperBound(1); ++col)
                 {
                     if (this[row, col] == ' ')
-                        return true; ;
+                        return true;
                 }
             }
-            return false; ;
+            return false;
         }
     }//class
 }
